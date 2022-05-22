@@ -1,0 +1,72 @@
+@ mvc 5 
+1) program
+create database db2022
+
+use db2022
+go
+CREATE TABLE FootBallLeague (
+    [Id]           INT           NOT NULL,
+    [MatchId]      VARCHAR (50)  NULL,
+    [TeamName1]    VARCHAR (50)  NOT NULL,
+    [TeamName2]    VARCHAR (50)  NOT NULL,
+    [Status]       VARCHAR (100) NOT NULL,
+    [Winning Team] VARCHAR (50)  NOT NULL,
+    [Points]       NCHAR (10)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(1001,'akola','nagpur','Win','akola',4)
+
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(1002,'tiwsa','bhandara','draw',2)
+
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(1003,'titwa','mumbai','Win','mumbai',4)
+
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(1004,'pune','akola','Win','pune',4)
+
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(1005,'chandur','chandrapur','win','chandrapur',4)
+
+
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(1006,'pune','mumbai','draw',2)
+	
+
+create procedure SPInsertValueForTeams
+@MatchID int,
+@TeamName1 nvarchar(30),
+@TeamName2 nvarchar(30),
+@TeamStatus nvarchar(10),
+@Winning_Team nvarchar(30),
+@Points int
+as 
+begin
+INSERT INTO FootBallLeague(MatchID,TeamName1,TeamName2,Status,Winning Team,Points)
+VALUES(@MatchID,@TeamName1,@TeamName2,@TeamStatus,@Winning Team,@Points)
+end
+
+
+--Executing stored procedure
+execute SPInsertValueForTeams
+@MatchID=1009,
+@TeamName1 ='pune',
+@TeamName2 ='sangali',
+@TeamStatus='Win',
+@Winning Team ='pune',
+@Points =4
+
+select status from FootBallLeague Where TeamStatus='draw'
+
+select Winning Team ,TeamStatus from FootBallLeague where TeamStatus='Win'
+
+create view VWFootball
+as
+select TeamName1,TeamName2,TeamStatus from FootBallLeague where TeamStatus='Draw'
+
+select * from VWFootball
+
+select * from FootBallLeague where TeamName1='p

@@ -1,0 +1,33 @@
+
+
+select * from sample
+	
+
+create procedure sample
+
+@BoardingPoint nvarchar(10),
+@TravelDate date,
+@Amount decimal(7,2),
+@Rating int
+as 
+begin
+INSERT INTO sample(BoardingPoint,TravelDate,Amount,Rating)
+VALUES(@BoardingPoint,@TravelDate,@Amount,@Rating)
+end
+
+execute sample
+
+@BoardingPoint ='nashik phata',
+@TravelDate ='2017-07-18',
+@Amount=900.00,
+@Rating =4
+
+select BoardingPoint,TravelDate from Businfo where Amount>750
+
+create view VWBuss
+as
+select BusID,BoardingPoint from Businfo where Rating>2
+
+select * from VWBuss
+
+select BusID,BoardingPoint from Businfo where TravelDate='2018-04-22'
