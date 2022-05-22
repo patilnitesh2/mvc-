@@ -41,7 +41,7 @@ create procedure SPInsertValueForTeams
 @TeamName1 nvarchar(30),
 @TeamName2 nvarchar(30),
 @TeamStatus nvarchar(10),
-@Winning_Team nvarchar(30),
+@Winning Team nvarchar(30),
 @Points int
 as 
 begin
